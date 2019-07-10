@@ -15,15 +15,19 @@
 <body>
     
     <!-- Button Area -->
-    <div id="button-area">
+    <div id="button-area" class="container-fluid bg-dark">
 
     </div>
 
     <!-- Add Topic Button -->
-    <div id="add-topic-area">
+    <div id="add-topic-area" class="container bg-info rounded-sm">
 
         <form>
-
+            <div class="form-group">
+                <label for="add-topic">Add a Topic!</label>
+                <input type="text" class="form-control" id="add-topic" aria-describedby="emailHelp" placeholder="Enter topic!">
+            </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
@@ -56,9 +60,9 @@
     ];
 
     $.each(topics, function(index, value){
-        $('#button-area').append('<button class="topics">' +value+ '</button>')
+        $('#button-area').append('<button class="topics btn btn-info">' +value+ '</button>')
     })
-    debugger
+    
     var giphyURL = 'https://api.giphy.com/v1/gifs/random?';
     var giphyApiKey = 'api_key=TZuN5wWmbWU0ZjT6YzH5k5292AUhCHjO';
     var giphyParameters = '&rating=G&lang=en'
@@ -67,6 +71,9 @@
         var selectedTopic = $(this).text();
         var giphyTag = '&tag=' + selectedTopic;
         var queryURL = giphyURL+giphyApiKey+giphyTag+giphyParameters;
+        $('#giphy-area').css({
+            display: ''
+        })
         console.log(queryURL);
         console.log(giphyTag);
                 

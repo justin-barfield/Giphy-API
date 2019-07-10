@@ -1,0 +1,23 @@
+html {
+    background-color: green
+}
+
+#button-area {
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.topics {
+    margin: 0px 5px;
+}
+
+#add-topic-area {
+    width: 30%;
+    float: right;
+    padding: 20px;
+}
+
+#giphy-area {
+    width: 60%;
+    display: none;
+}
