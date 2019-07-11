@@ -5,10 +5,12 @@ html {
 #button-area {
     padding: 15px;
     margin-bottom: 10px;
+    position: sticky;
+    top: 0;
 }
 
 .topics {
-    margin: 0px 5px;
+    margin: 5px 5px;
 }
 
 #add-topic-area {
@@ -18,6 +20,14 @@ html {
 }
 
 #giphy-area {
-    width: 60%;
+    width: 70%;
     display: none;
+    justify-content: left;
+    float: left;
+}
+
+.giphys {
+    float: left;
+    background-color: transparent;
+    padding: 5px;
 }
