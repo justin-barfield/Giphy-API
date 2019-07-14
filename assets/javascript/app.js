@@ -33,9 +33,9 @@ function writeTopics() {
 }
 writeTopics()
 
-var giphyURL = 'https://api.giphy.com/v1/gifs/random?';
-var giphyApiKey = 'api_key=TZuN5wWmbWU0ZjT6YzH5k5292AUhCHjO';
-var giphyParameters = '&rating=pg&lang=en'
+var giphyURL = 'https://api.giphy.com/v1/gifs/random';
+var giphyApiKey = '?api_key=TZuN5wWmbWU0ZjT6YzH5k5292AUhCHjO';
+var giphyParameters = '&rating=pg'
 
 // Prevents enter on whole page
 $(document).on("keydown", "form", function(event) { 
@@ -70,7 +70,9 @@ $(document).on('click', '.topics', function(value, stillGif, animatedGif) {
     })
         .then(function(response) {
             var results = response.data;
-            var rating = results.rating;
+            // Rating cannot be pulled from the response when using 'random' search. However, the rating can be specified.
+            // Rating CAN be pulled from the response when using 'search'.
+            var rating = 'PG';
 
             stillGif = results.images.fixed_height_still.url
             animatedGif = results.images.fixed_height.url
@@ -90,13 +92,12 @@ $(document).on('click', '.topics', function(value, stillGif, animatedGif) {
                 'data-animate': animatedGif,
                 'data-state': 'still',
                 alt: selectedTopic,
-            })).addClass('giphys'))
+            })).append(giphyParagraph.text(rating)).addClass('giphys'))
         })
 })
 
 $(document).on('click', '.gif', function() {
 
-    log(this)
     var getDataState = $(this).data('state');
     var getAnimateURL = $(this).data('animate');
     var getStillURL = $(this).data('still');
