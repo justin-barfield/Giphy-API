@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <!-- <script defer src="assets/javascript/app.js"></script> -->
+    <script defer src="assets/javascript/app.js"></script>
 
     <title>Giphy API</title>
 </head>
@@ -35,99 +35,6 @@
     <div id="giphy-area" class="container">
 
     </div>
-
-
-
-
-
-
-<script type="text/javascript">
-
-    var log = console.log
-    
-    var topics = [
-        'Cats',
-        'Dogs',
-        'Happy',
-        'Rainbow',
-        'Coding',
-        'Dark Souls',
-        'Kingdom Hearts',
-        'Anime',
-        'RoosterTeeth',
-        'Halo',
-
-    ];
-
-    function writeTopics() {
-        $.each(topics, function(index, value){
-            $('#button-area').append('<button class="topics btn btn-info">' +value+ '</button>')
-        })
-    }
-    writeTopics()
-    
-    var giphyURL = 'https://api.giphy.com/v1/gifs/random?';
-    var giphyApiKey = 'api_key=TZuN5wWmbWU0ZjT6YzH5k5292AUhCHjO';
-    var giphyParameters = '&rating=pg&lang=en'
-
-    // Prevents enter on whole page
-    $(document).on("keydown", "form", function(event) { 
-        return event.key != "Enter";
-    });
-
-    $('#submit').on('click', function() {
-        var enteredTopic = $('#add-topic').val();
-        topics.push(enteredTopic);
-        $('#button-area').append('<button class="topics btn btn-info">' +enteredTopic+ '</button>');
-        $('#add-topic').val('');
-    })
-
-    $('#giphy-area').on('click', function() {
-
-    })
-    
-    $('#button-area').on('click', '.topics', function(value) {
-        var selectedTopic = $(this).text();
-        log(selectedTopic)
-        var giphyTag = ('&tag=' + selectedTopic);
-        var queryURL = giphyURL+giphyApiKey+giphyTag+giphyParameters;
-        $('#giphy-area').css({
-            display: 'block'
-        })
-        console.log(queryURL);
-        console.log(giphyTag);
-                
-        
-        $.ajax({
-            url: queryURL,
-            method: 'GET'
-        })
-            .then(function(response) {
-                var results = response.data;
-                var rating = results.rating;
-                console.log(results);
-                console.log(response);
-                log(results.images.fixed_height_small_still_url)
-                
-                
-
-                
-                var giphyArea = $('#giphy-area');
-                var giphyDiv = $('<div class="giphys">');
-                var giphyImage = $('<img class="gif" data-still="" data-animate="" data-state="">');
-                var giphyParagraph = $('<p>');
-
-                giphyArea.append(giphyDiv.append(giphyImage.attr('data-still' + 'data-animate' + {
-                    src: results.images.fixed_height_small_still_url,
-                    alt: selectedTopic,
-                }), giphyParagraph.text(rating)))
-            
-                
-                // $('#giphy-area').prepend('<img>').attr('src', queryURL, 'alt', value)
-            })
-    })
-        
-</script>
 
 </body>
 </html>
